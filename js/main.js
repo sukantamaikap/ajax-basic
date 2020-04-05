@@ -20,9 +20,32 @@ if(pageCount > 3) {
 
 function renderHTML(data) {
     // add html to empty div element
-    var htmlString = '', i = 0;
+    var htmlString = '', i = 0, j = 0;
     for (; i < data.length; i++) {
-        htmlString += '<p>' + data[i].name + ' is a ' + data[i].species + '</p>';
+        htmlString += '<p>' + data[i].name + ' is a ' + data[i].species + 'that likes to eat ';
+        for(; j< data[i].foods.likes.length; j++) {
+            if (j== 0) {
+                htmlString += data[i].foods.likes[j];
+            } else{
+                htmlString += ' and ' + data[i].foods.likes[j];
+            }
+        }
+
+        j = 0;
+
+        htmlString += ' and dislikes ';
+
+        for(; j< data[i].foods.dislikes.length; j++) {
+            if (j== 0) {
+                htmlString += data[i].foods.dislikes[j];
+            } else{
+                htmlString += ' and ' + data[i].foods.dislikes[j];
+            }
+        }
+
+        j = 0;
+
+        htmlString += '</p>';
     }
      container.insertAdjacentHTML('beforeend', htmlString);
 }
